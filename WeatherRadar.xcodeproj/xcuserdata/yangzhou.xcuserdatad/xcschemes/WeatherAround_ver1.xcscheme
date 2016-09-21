@@ -17,7 +17,7 @@
                BlueprintIdentifier = "93F881141D8F44E500EE8582"
                BuildableName = "WeatherAround_ver1.app"
                BlueprintName = "WeatherAround_ver1"
-               ReferencedContainer = "container:WeatherAround_ver1.xcodeproj">
+               ReferencedContainer = "container:WeatherRadar.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -35,7 +35,7 @@
                BlueprintIdentifier = "93F881281D8F44E500EE8582"
                BuildableName = "WeatherAround_ver1Tests.xctest"
                BlueprintName = "WeatherAround_ver1Tests"
-               ReferencedContainer = "container:WeatherAround_ver1.xcodeproj">
+               ReferencedContainer = "container:WeatherRadar.xcodeproj">
             </BuildableReference>
          </TestableReference>
          <TestableReference
@@ -45,7 +45,7 @@
                BlueprintIdentifier = "93F881331D8F44E500EE8582"
                BuildableName = "WeatherAround_ver1UITests.xctest"
                BlueprintName = "WeatherAround_ver1UITests"
-               ReferencedContainer = "container:WeatherAround_ver1.xcodeproj">
+               ReferencedContainer = "container:WeatherRadar.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -55,7 +55,7 @@
             BlueprintIdentifier = "93F881141D8F44E500EE8582"
             BuildableName = "WeatherAround_ver1.app"
             BlueprintName = "WeatherAround_ver1"
-            ReferencedContainer = "container:WeatherAround_ver1.xcodeproj">
+            ReferencedContainer = "container:WeatherRadar.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -78,7 +78,7 @@
             BlueprintIdentifier = "93F881141D8F44E500EE8582"
             BuildableName = "WeatherAround_ver1.app"
             BlueprintName = "WeatherAround_ver1"
-            ReferencedContainer = "container:WeatherAround_ver1.xcodeproj">
+            ReferencedContainer = "container:WeatherRadar.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -97,7 +97,7 @@
             BlueprintIdentifier = "93F881141D8F44E500EE8582"
             BuildableName = "WeatherAround_ver1.app"
             BlueprintName = "WeatherAround_ver1"
-            ReferencedContainer = "container:WeatherAround_ver1.xcodeproj">
+            ReferencedContainer = "container:WeatherRadar.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

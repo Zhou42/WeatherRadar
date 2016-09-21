@@ -29,7 +29,7 @@ class WeatherDetailsViewController: UIViewController {
     
     override func viewDidLoad() {
         cityNameLabel.text = cityName
-        tempLabel.text = "\(temp! - 273.15)\u{00B0}C"
+        tempLabel.text = "\(Int(temp! - 273.15))\u{00B0}C"
 //        backgroundImage.image = UIImage(named: backgroundId!)
         Icon.image = UIImage(named: iconId!)
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: backgroundId!)!)
