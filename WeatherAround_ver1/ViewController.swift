@@ -166,40 +166,40 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
             return nil
         }
         
-        // print(WeatherAnnotation.iconId)
+        print("=============== annotation view=================")
+        print(annotation.coordinate)
         
-        let epsilon = 0.005
-        if let selectedPin = selectedPin, fabs(annotation.coordinate.latitude - selectedPin.coordinate.latitude) < epsilon && fabs(annotation.coordinate.longitude - selectedPin.coordinate.longitude) < epsilon {
+        if isSelectePin(annotation) {
             
-            print("========Search \(selectedPin.title)=============")
+            print("========Search \(annotation.title!!)=============")
             // if the pin is the searched one
             // 使用城市名 作为id / 但是有重名问题，需要加入一些其余的string
-            let reuseId = annotation.title
-//            var pinView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseId) as? MKPinAnnotationView
+            // reuseId 要格外注意 因为如果这里与下面另外的情况有重复，则显示混乱
+            let reuseId = annotation.title!!
+            var pinView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseId) as? MKPinAnnotationView
 //            let pinView = MKPinAnnotationView()
-            let pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseId!)
-            pinView.pinTintColor = UIColor.orange
-            pinView.canShowCallout = true
+            pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
+            
+            pinView!.pinTintColor = UIColor.orange
+            pinView!.canShowCallout = true
             let smallSquare = CGSize(width: 30, height: 30)
             let button = UIButton(frame: CGRect(origin: CGPoint.zero, size: smallSquare))
             button.setBackgroundImage(UIImage(named: "car"), for: .normal)
             button.addTarget(self, action: #selector(ViewController.getDirections), for: .touchUpInside)
-            pinView.leftCalloutAccessoryView = button
+            pinView!.leftCalloutAccessoryView = button
             return pinView
             
         } else {
             // the pin is for weather display
-            
             guard let WeatherAnnotation = annotation as? WeatherMarkerAnnotation else {
                 return nil
             }
-            let reuseId = WeatherAnnotation.title!
+            let reuseId = "\(WeatherAnnotation.title!)\(WeatherAnnotation.iconId)"
             var pinView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseId)
             if pinView == nil {
                 pinView = MKAnnotationView(annotation: WeatherAnnotation, reuseIdentifier: reuseId)
                 // update Weather Icons
                 self.updateWeatherIconId(WeatherAnnotation, pinView: pinView!)
-                
 //                pinView?.image = getIconById(id: iconId) // UIImage(named:imageName)
                 pinView?.canShowCallout = true
                 pinView!.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
@@ -224,20 +224,21 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         }
         
         // 这里要判断 是search pin， 还是weather点击; 有temp的是weather，没有的是pin
-        if let temp = weatherAnnotation.temperature {
+        if self.isSelectePin(weatherAnnotation) {
+            // 如果是search的pin 则不要做什么，调用 getDirections()
+            return
+        } else {
             // print(weatherAnnotation.weatherDescription)
             // weatherController没法定义在整个这个class中，会报错
             let weatherController: WeatherDetailsViewController
             // 使用storyboard调用controller 必须要在controller identity中 填写storyboard id, 然后使用storyboard id调用
             weatherController = self.storyboard?.instantiateViewController(withIdentifier: "WeatherDetailsViewController") as! WeatherDetailsViewController
             weatherController.cityName = weatherAnnotation.title
-            weatherController.temp = temp
+            weatherController.temp = weatherAnnotation.temperature
             weatherController.backgroundId = "\(weatherAnnotation.iconId!)-1"
             weatherController.iconId = weatherAnnotation.iconId
             // print("============== \(weatherController.backgroundId)===================")
             self.present(weatherController, animated: true, completion: nil)
-        } else {
-            return
         }
     }
     
@@ -359,16 +360,13 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
 //                annotation.temperature = temperature
                 
 //                // 更新UI
-////                self.mainMapView.addAnnotation(annotation)
-//                let epsilon = 0.005
-//                // 如果是cached pin (或附近)，就不要覆盖
-//                if let selectedPin = self.selectedPin, fabs(annotation.coordinate.latitude - selectedPin.coordinate.latitude) < epsilon && fabs(annotation.coordinate.longitude - selectedPin.coordinate.longitude) < epsilon {
-//                    continue
-//                } else {
-//                    performUIUpdatesOnMain {
-//                        self.mainMapView.addAnnotation(annotation)
-//                    }
-//                }
+//                self.mainMapView.addAnnotation(annotation)
+                // 如果是cached pin (或附近)，就不要覆盖
+                
+                if self.isSelectePin(annotation) {
+                    continue
+                }
+                
                 performUIUpdatesOnMain {
                     self.mainMapView.addAnnotation(annotation)
                 }
@@ -433,7 +431,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
             guard let weatherAnnotation = annotation as? WeatherMarkerAnnotation else {
                 return
             }
-            
             
             let lat = weatherAnnotation.coordinate.latitude, lon = weatherAnnotation.coordinate.longitude;
             
@@ -527,6 +524,17 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
 //            print("==========weatherIcon Error!!!!============")
 //        }
     }
+    
+    func isSelectePin(_ annotation: MKAnnotation) -> Bool {
+        let epsilon = 0.001
+        if let selectedPin = selectedPin, fabs(annotation.coordinate.latitude - selectedPin.coordinate.latitude) < epsilon && fabs(annotation.coordinate.longitude - selectedPin.coordinate.longitude) < epsilon {
+            return true
+        } else {
+            return false
+        }
+    }
+    
+    
 }
 
 
@@ -535,6 +543,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
 extension ViewController: HandleMapSearch {
     func dropPinZoomIn(placemark:MKPlacemark){
         // cache the pin
+        print("============selectedPin updated===============")
+        print(placemark.coordinate)
         selectedPin = placemark
         // clear existing pins
         performUIUpdatesOnMain {
@@ -547,11 +557,16 @@ extension ViewController: HandleMapSearch {
             let state = placemark.administrativeArea {
             annotation.subtitle = "\(city) \(state)"
         }
-        mainMapView.addAnnotation(annotation)
+        // 这里必须用performUIUpdatesOnMain！！！！ 否则这里是asyn的，也就是addAnnotation 直接返回到下一条命令。导致pin迟迟(根本就不出现)。。。所以update UI的 一定放在performUIUpdatesOnMain 里
+        performUIUpdatesOnMain {
+            self.mainMapView.addAnnotation(annotation)
+        }
+        print("============selectedPin added===============")
         let span = MKCoordinateSpanMake(0.05, 0.05)
         let region = MKCoordinateRegionMake(placemark.coordinate, span)
         mainMapView.setRegion(region, animated: true)
+        
         // display weather around this pin
-        self.displayWeatherAround(placemark.coordinate)
+         self.displayWeatherAround(placemark.coordinate)
     }
 }
