@@ -1,14 +1,14 @@
 //
-//  WeatherAround_ver1UITests.swift
-//  WeatherAround_ver1UITests
+//  WeatherRadarUITests.swift
+//  WeatherRadarUITests
 //
-//  Created by Yang Zhou on 2016-09-18.
+//  Created by Yang Zhou on 2016-09-21.
 //  Copyright © 2016 Yang Zhou. All rights reserved.
 //
 
 import XCTest
 
-class WeatherAround_ver1UITests: XCTestCase {
+class WeatherRadarUITests: XCTestCase {
         
     override func setUp() {
         super.setUp()

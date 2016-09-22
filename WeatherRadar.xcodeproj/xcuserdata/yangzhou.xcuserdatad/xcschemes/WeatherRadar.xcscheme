@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "93F881141D8F44E500EE8582"
-               BuildableName = "WeatherAround_ver1.app"
-               BlueprintName = "WeatherAround_ver1"
+               BlueprintIdentifier = "939F80801D9365EA00871E70"
+               BuildableName = "WeatherRadar.app"
+               BlueprintName = "WeatherRadar"
                ReferencedContainer = "container:WeatherRadar.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -32,9 +32,9 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "93F881281D8F44E500EE8582"
-               BuildableName = "WeatherAround_ver1Tests.xctest"
-               BlueprintName = "WeatherAround_ver1Tests"
+               BlueprintIdentifier = "939F80941D9365EA00871E70"
+               BuildableName = "WeatherRadarTests.xctest"
+               BlueprintName = "WeatherRadarTests"
                ReferencedContainer = "container:WeatherRadar.xcodeproj">
             </BuildableReference>
          </TestableReference>
@@ -42,9 +42,9 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "93F881331D8F44E500EE8582"
-               BuildableName = "WeatherAround_ver1UITests.xctest"
-               BlueprintName = "WeatherAround_ver1UITests"
+               BlueprintIdentifier = "939F809F1D9365EA00871E70"
+               BuildableName = "WeatherRadarUITests.xctest"
+               BlueprintName = "WeatherRadarUITests"
                ReferencedContainer = "container:WeatherRadar.xcodeproj">
             </BuildableReference>
          </TestableReference>
@@ -52,9 +52,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "93F881141D8F44E500EE8582"
-            BuildableName = "WeatherAround_ver1.app"
-            BlueprintName = "WeatherAround_ver1"
+            BlueprintIdentifier = "939F80801D9365EA00871E70"
+            BuildableName = "WeatherRadar.app"
+            BlueprintName = "WeatherRadar"
             ReferencedContainer = "container:WeatherRadar.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -75,9 +75,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "93F881141D8F44E500EE8582"
-            BuildableName = "WeatherAround_ver1.app"
-            BlueprintName = "WeatherAround_ver1"
+            BlueprintIdentifier = "939F80801D9365EA00871E70"
+            BuildableName = "WeatherRadar.app"
+            BlueprintName = "WeatherRadar"
             ReferencedContainer = "container:WeatherRadar.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -94,9 +94,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "93F881141D8F44E500EE8582"
-            BuildableName = "WeatherAround_ver1.app"
-            BlueprintName = "WeatherAround_ver1"
+            BlueprintIdentifier = "939F80801D9365EA00871E70"
+            BuildableName = "WeatherRadar.app"
+            BlueprintName = "WeatherRadar"
             ReferencedContainer = "container:WeatherRadar.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

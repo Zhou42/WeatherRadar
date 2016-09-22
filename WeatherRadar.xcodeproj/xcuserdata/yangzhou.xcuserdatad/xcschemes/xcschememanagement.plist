@@ -4,7 +4,7 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>WeatherAround_ver1.xcscheme</key>
+		<key>WeatherRadar.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>0</integer>
@@ -12,17 +12,17 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>93F881141D8F44E500EE8582</key>
+		<key>939F80801D9365EA00871E70</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>93F881281D8F44E500EE8582</key>
+		<key>939F80941D9365EA00871E70</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>93F881331D8F44E500EE8582</key>
+		<key>939F809F1D9365EA00871E70</key>
 		<dict>
 			<key>primary</key>
 			<true/>
